@@ -3,27 +3,46 @@
 This and other 15-466 base code is built around a collection of useful libraries and functions which we will collectively call "nest".
 This name captures the goal of having the various parts and functions relatively easy to reconfigure (and remove), while still forming a good support for your game.
 
-## What Is Included
+## What Is Included + New
 
 Here is a quick overview of what is included. For further information, ☺read the code☺ !
 - Base code (files you will certainly edit):
-	- [`main.cpp`](main.cpp) creates the game window and contains the main loop. Set your window title, size, and initial Mode here.
-	- [`PlayMode.hpp`](PlayMode.hpp), [`PlayMode.cpp`](PlayMode.cpp) declaration+definition for a basic PPU demonstration. You'll probably build your game on it.
-	- [`Maekfile.js`](Maekfile.js) build system. Edit to support new asset pipelines as needed. More info below.
-	- [`.gitignore`](.gitignore) ignores generated files. You will need to change it if your executable name changes. (If you find yourself changing it to ignore, e.g., your editor's swap files you should probably, instead, be investigating making this change in the global git configuration.)
+    - ```main.cpp``` creates the game window and contains the main loop. Set your window title, size, and initial Mode here.
+    - ```MenuMode.*pp``` declaration+definition for a sprite-based menu, with text drawing and menu movement sounds. **New:** layout_items()
+    - ```Sound.*pp``` a basic game audio system. Sounds can loop and have 3D positions.
+    - ```Jamfile``` responsible for telling FTJam how to build the project. Change this when you add additional .cpp files and to change your runtime executable's name.
+    - ```.gitignore``` ignores generated files. You will need to change it if your executable name changes. (If you find yourself changing it to ignore, e.g., your editor's swap files you should probably, instead be investigating making this change in the global git configuration.)
 - Useful code (files you should investigate, but probably won't change):
-	- [`PPU466.hpp`](PPU466.hpp), [`PPU466.cpp`](PPU466.cpp) very restricted sprite + background drawing class.
-	- [`read_write_chunk.hpp`](read_write_chunk.hpp) templated helpers for reading chunk-based binary formats.
-	- [`Load.hpp`](Load.hpp), [`Load.cpp`](Load.cpp) asset loading wrapper; load things in the global scope but not until after an OpenGL context is established.
-	- [`Mode.hpp`](Mode.hpp), [`Mode.cpp`](Mode.cpp) base class for modes (things that recieve events and draw).
-	- [`gl_compile_program.hpp`](gl_compile_program.hpp), [`gl_compile_program.cpp`](gl_compile_program.cpp) helper function to compiles OpenGL shader programs.
-	- [`load_save_png.hpp`](load_save_png.hpp), [`load_save_png.cpp`](load_save_png.cpp) helper functions to load and save PNG images.
-	- [`GL.hpp`](GL.hpp), [`GL.cpp`](GL.cpp) includes OpenGL 3.3 prototypes without the namespace pollution of (e.g.) SDL's OpenGL header; on Windows, deals with some function pointer wrangling.
-	- [`gl_errors.hpp`](gl_errors.hpp) provides a `GL_ERRORS()` macro.
-	- [`.github/workflows/build-workflow.yml`](.github/workflows/build-workflow.yml) sets up the repository to be built via github actions whenever it is pushed or released.
+	- **New:** ```Connection.*pp``` polling-based socket communications.
+	- ```collide.*pp``` collision helper functions.
+    - ```load_wav.*pp``` load audio data from wav files.
+    - ```load_opus.*pp``` load audio data from opus files.
+    - ```Load.*pp``` deferred resource loading.
+    - ```data_path.*pp``` get paths relative to the game's directory.
+    - ```read_write_chunk.hpp``` simple helper to load/save data arrays.
+	- ```Mesh.*pp``` system for loading vertex buffers (`MeshBuffer`s) and looking up meshes in them. (Bascially, ```Sprite.hpp``` for 3D objects.)
+    - ```Sprite.*pp``` runtime component of a sprite asset pipeline.
+    - ```DrawSprites.*pp``` helper for drawing `Sprite`s from the same `SpriteAtlas`. Can also `draw_text` included. Pixel-perfect alignment mode included.
+    - ```Mode.hpp``` base class for modes (things that recieve events and draw).
+    - ```LitColorTextureProgram.hpp``` ColorTextureProgram with hemisphere lighting.
+	- ```DrawLines.*pp``` helper for drawing lines (and line-based text). Intended to be used mostly for debug visualization.
+    - ```ColorProgram.hpp``` ColorTextureProgram without texture. (Used for DrawLines.)
+	- ```ShowMeshesMode.*pp```, ```ShowMeshesProgram.*pp```, ```show-meshes.cpp``` utility for viewing mesh files; might also be interesting to read for camera controls.
+	- ```ShowSceneMode.*pp```, ```ShowSceneProgram.*pp```, ```show-scene.cpp``` utility for viewing scene files.
+	- ```scenes/export-meshes.py``` python code to export meshes from Blender 2.8
+	- ```scenes/export-scene.py``` python code to export scenes from Blender 2.8
+    - ```ColorTextureProgram.hpp``` example OpenGL shader program, wrapped in a helper class.
+    - ```gl_compile_program.hpp``` helper function to compiles OpenGL shader programs.
+    - ```load_save_png.hpp``` helper functions to load and save PNG images.
+    - ```GL.hpp``` includes OpenGL 3.3 prototypes without the namespace pollution of (e.g.) SDL's OpenGL header; on Windows, deals with some function pointer wrangling.
+    - ```gl_errors.hpp``` provides a ```GL_ERRORS()``` macro.
+	- ```pack-sprites.cpp```, ```sprites/extract-sprites.py``` utilities used in the sprite asset pipeline. See [the README](sprites/README.md).
 - Here be dragons (files you probably don't need to look at):
-	- [`make-GL.py`](make-GL.py) does what it says on the tin. Included in case you are curious. You won't need to run it.
-	- [`glcorearb.h`](glcorearb.h) used by `make-GL.py` to produce `GL.*pp`
+	- ```PathFont.*pp```, ```PathFont-font.*```, ```make-PathFont-font.py``` system for line-based fonts encoded into header files (so they can be used without loading data from disk). Mostly intended for debugging. You don't need to edit or run this.
+    - ```make-GL.py``` does what it says on the tin. Included in case you are curious. You won't need to run it.
+	- ```glcorearb.h``` used by ```make-GL.py``` to produce ```GL.*pp```
+- Removed Files (you can find them in earlier base codes):
+    - **Removed:** ```StoryMode.*pp```
 
 
 ## Build Instructions
