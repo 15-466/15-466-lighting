@@ -128,14 +128,8 @@ const game_names = [
 	maek.CPP('DemoLightingForwardMode.cpp'),
 	maek.CPP('DemoLightingDeferredMode.cpp'),
 	maek.CPP('MenuMode.cpp'),
-	maek.CPP('PlantMode.cpp'),
 	maek.CPP('main.cpp'),
 	maek.CPP('LitColorTextureProgram.cpp'),
-	maek.CPP('Sound.cpp'),
-	maek.CPP('load_wav.cpp'),
-	maek.CPP('load_opus.cpp'),
-	maek.CPP('BoneLitColorTextureProgram.cpp'),
-	maek.CPP('BoneAnimation.cpp'),
 	maek.CPP('LightMeshes.cpp'),
 	maek.CPP('BasicMaterialProgram.cpp'),
 	maek.CPP('BasicMaterialDeferredProgram.cpp'),
@@ -147,10 +141,6 @@ const game_names = [
 ];
 
 const common_names = [
-	maek.CPP('PathFont.cpp'),
-	maek.CPP('PathFont-font.cpp'),
-	maek.CPP('DrawLines.cpp'),
-	maek.CPP('ColorProgram.cpp'),
 	maek.CPP('gl_compile_program.cpp'),
 	maek.CPP('make_vao_for_program.cpp'),
 	maek.CPP('Scene.cpp'),
@@ -162,37 +152,20 @@ const common_names = [
 	maek.CPP('ColorTextureProgram.cpp'),
 ];
 
-const show_meshes_names = [
-	maek.CPP('show-meshes.cpp'),
-	maek.CPP('ShowMeshesProgram.cpp'),
-	maek.CPP('ShowMeshesMode.cpp')
-];
-
-const show_scene_names = [
-	maek.CPP('show-scene.cpp'),
-	maek.CPP('ShowSceneProgram.cpp'),
-	maek.CPP('ShowSceneMode.cpp')
+const pack_sprites_names = [
+	maek.CPP('pack-sprites.cpp'),
 ];
 
 //the '[exeFile =] LINK(objFiles, exeFileBase, [, options])' links an array of objects into an executable:
 // objFiles: array of objects to link
 // exeFileBase: name of executable file to produce
 //returns exeFile: exeFileBase + a platform-dependant suffix (e.g., '.exe' on windows)
-const game_exe = maek.LINK([...game_names, ...common_names], 'dist/game');
-const show_meshes_exe = maek.LINK([...show_meshes_names, ...common_names], 'scenes/show-meshes');
-const show_scene_exe = maek.LINK([...show_scene_names, ...common_names], 'scenes/show-scene');
+const demo_exe = maek.LINK([...game_names, ...common_names], 'dist/demo');
+
+const pack_sprites_exe = maek.LINK([...pack_sprites_names, ...common_names], 'sprites/pack-sprites');
 
 //set the default target to the game (and copy the readme files):
-maek.TARGETS = [game_exe, show_meshes_exe, show_scene_exe, ...copies];
-
-//the '[targets =] RULE(targets, prerequisites[, recipe])' rule defines a Makefile-style task
-// targets: array of targets the task produces (can include both files and ':abstract targets')
-// prerequisites: array of targets the task waits on (can include both files and ':abstract targets')
-// recipe (optional): array of commands to run (where each command is an array [exe, arg1, arg0, ...])
-//returns targets: the targets the rule produces
-maek.RULE([':run'], [game_exe], [
-	[game_exe, '--some-command-line-option']
-]);
+maek.TARGETS = [demo_exe, pack_sprites_exe, ...copies];
 
 //Note that tasks that produce ':abstract targets' are never cached.
 // This is similar to how .PHONY targets behave in make.
