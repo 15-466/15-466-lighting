@@ -1,5 +1,4 @@
 #include "DemoLightingMultipassMode.hpp"
-#include "DrawLines.hpp"
 #include "Load.hpp"
 #include "data_path.hpp"
 #include "demo_menu.hpp"

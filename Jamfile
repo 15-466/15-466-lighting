@@ -189,10 +189,6 @@ GAME_NAMES =
 #	;
 
 COMMON_NAMES =
-	Connection
-	PathFont
-	PathFont-font
-	DrawLines
 	ColorProgram
 	Scene
 	Mesh

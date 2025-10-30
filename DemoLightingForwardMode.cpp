@@ -1,5 +1,4 @@
 #include "DemoLightingForwardMode.hpp"
-#include "DrawLines.hpp"
 #include "Load.hpp"
 #include "data_path.hpp"
 #include "BasicMaterialForwardProgram.hpp"
