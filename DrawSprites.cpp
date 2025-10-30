@@ -6,6 +6,8 @@
 #include "GL.hpp"
 #include "gl_errors.hpp"
 
+#define GLM_ENABLE_EXPERIMENTAL
+
 //for glm::value_ptr() :
 #include <glm/gtc/type_ptr.hpp>
 

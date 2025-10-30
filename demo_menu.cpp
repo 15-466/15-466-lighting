@@ -16,20 +16,16 @@ std::shared_ptr< MenuMode > demo_menu;
 
 Load< void > load_demo_menu(LoadTagDefault, [](){
 	std::vector< MenuMode::Item > items;
-	items.emplace_back("[[ DEMO MENU ]]");
-	items.emplace_back("plant");
-	items.back().on_select = [](MenuMode::Item const &){
-		Mode::set_current(std::make_shared< PlantMode >());
-	};
-	items.emplace_back("lighting - multipass");
+	items.emplace_back("Lighting Demo");
+	items.emplace_back("multipass");
 	items.back().on_select = [](MenuMode::Item const &){
 		Mode::set_current(std::make_shared< DemoLightingMultipassMode >());
 	};
-	items.emplace_back("lighting - forward");
+	items.emplace_back("forward");
 	items.back().on_select = [](MenuMode::Item const &){
 		Mode::set_current(std::make_shared< DemoLightingForwardMode >());
 	};
-	items.emplace_back("lighting - deferred");
+	items.emplace_back("deferred");
 	items.back().on_select = [](MenuMode::Item const &){
 		Mode::set_current(std::make_shared< DemoLightingDeferredMode >());
 	};

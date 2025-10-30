@@ -14,13 +14,14 @@ struct DemoLightingMultipassMode : Mode {
 	void run_timing();
 
 	//z-up trackball-style camera controls:
-	struct {
+	struct Camera {
 		float radius = 20.0f;
 		float azimuth = 0.5f * 3.1415926f; //angle ccw of -y axis, in radians, [-pi,pi]
 		float elevation = 0.2f * 3.1415926f; //angle above ground, in radians, [-pi,pi]
 		glm::vec3 target = glm::vec3(0.0f);
 		bool flip_x = false; //flip x inputs when moving? (used to handle situations where camera is upside-down)
-	} camera;
+	};
+	//actual camera will be declared extern at global scope (for sharing among modes)
 
 	//mode uses a secondary Scene to hold a camera:
 	Scene camera_scene;

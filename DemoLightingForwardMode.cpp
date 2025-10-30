@@ -10,6 +10,8 @@
 #include <iostream>
 #include <algorithm>
 
+extern DemoLightingMultipassMode::Camera camera;
+
 GLuint spheres_for_basic_material_forward = -1U;
 extern Load< MeshBuffer > spheres_meshes;
 
@@ -99,7 +101,7 @@ void DemoLightingForwardMode::draw(glm::uvec2 const &drawable_size) {
 	GL_ERRORS();
 	
 	//--- actual drawing ---
-	glClearColor(0.2f, 0.2f, 0.2f, 0.0f);
+	glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	glDisable(GL_BLEND);
 	glEnable(GL_DEPTH_TEST);

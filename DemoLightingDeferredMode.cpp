@@ -13,6 +13,8 @@
 #include <algorithm>
 #include <iostream>
 
+extern DemoLightingMultipassMode::Camera camera;
+
 GLuint spheres_for_basic_material_deferred_object = 0;
 GLuint light_for_basic_material_deferred_light = 0;
 extern Load< MeshBuffer > spheres_meshes;

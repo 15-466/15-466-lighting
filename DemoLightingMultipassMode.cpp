@@ -9,6 +9,8 @@
 
 #include <iostream>
 
+DemoLightingMultipassMode::Camera camera; //global camera, shared by other modes
+
 GLuint spheres_for_basic_material = -1U;
 
 Load< MeshBuffer > spheres_meshes(LoadTagDefault, []() -> MeshBuffer const * {
@@ -128,7 +130,7 @@ void DemoLightingMultipassMode::draw(glm::uvec2 const &drawable_size) {
 
 
 	//--- actual drawing ---
-	glClearColor(0.2f, 0.2f, 0.2f, 0.0f);
+	glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	glDisable(GL_BLEND);
 	glEnable(GL_DEPTH_TEST);

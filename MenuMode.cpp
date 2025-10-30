@@ -107,7 +107,7 @@ void MenuMode::draw(glm::uvec2 const &drawable_size) {
 		//it is an error to remove the last reference to this object in background->draw():
 		assert(hold_me.use_count() > 1);
 	} else {
-		glClearColor(0.5f, 0.5f, 0.5f, 0.0f);
+		glClearColor(0.2f, 0.2f, 0.2f, 0.0f);
 		glClear(GL_COLOR_BUFFER_BIT);
 	}
 
