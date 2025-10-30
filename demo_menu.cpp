@@ -3,7 +3,6 @@
 #include "Sprite.hpp"
 #include "data_path.hpp"
 
-#include "PlantMode.hpp"
 #include "DemoLightingMultipassMode.hpp"
 #include "DemoLightingForwardMode.hpp"
 #include "DemoLightingDeferredMode.hpp"

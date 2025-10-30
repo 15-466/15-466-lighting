@@ -10,9 +10,6 @@
 //GL.hpp will include a non-namespace-polluting set of opengl prototypes:
 #include "GL.hpp"
 
-//Sound subsystem:
-#include "Sound.hpp"
-
 //for screenshots:
 #include "load_save_png.hpp"
 
@@ -88,9 +85,6 @@ int main(int argc, char **argv) {
 			std::cerr << "NOTE: couldn't set vsync (" << SDL_GetError() << ")." << std::endl;
 		}
 	}
-
-	//set up sound output:
-	Sound::init();
 
 	//Set automatic SRGB encoding if framebuffer needs it:
 	glEnable(GL_FRAMEBUFFER_SRGB);
@@ -200,8 +194,6 @@ int main(int argc, char **argv) {
 
 
 	//------------  teardown ------------
-
-	Sound::shutdown();
 
 	SDL_GL_DeleteContext(context);
 	context = 0;
