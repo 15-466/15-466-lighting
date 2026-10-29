@@ -26,8 +26,8 @@ MenuMode::~MenuMode() {
 }
 
 bool MenuMode::handle_event(SDL_Event const &evt, glm::uvec2 const &window_size) {
-	if (evt.type == SDL_KEYDOWN) {
-		if (evt.key.keysym.sym == SDLK_UP) {
+	if (evt.type == SDL_EVENT_KEY_DOWN) {
+		if (evt.key.key == SDLK_UP) {
 			//skip non-selectable items:
 			for (uint32_t i = selected - 1; i < items.size(); --i) {
 				if (items[i].on_select) {
@@ -36,7 +36,7 @@ bool MenuMode::handle_event(SDL_Event const &evt, glm::uvec2 const &window_size)
 				}
 			}
 			return true;
-		} else if (evt.key.keysym.sym == SDLK_DOWN) {
+		} else if (evt.key.key == SDLK_DOWN) {
 			//note: skips non-selectable items:
 			for (uint32_t i = selected + 1; i < items.size(); ++i) {
 				if (items[i].on_select) {
@@ -45,7 +45,7 @@ bool MenuMode::handle_event(SDL_Event const &evt, glm::uvec2 const &window_size)
 				}
 			}
 			return true;
-		} else if (evt.key.keysym.sym == SDLK_RETURN) {
+		} else if (evt.key.key == SDLK_RETURN) {
 			if (selected < items.size() && items[selected].on_select) {
 				items[selected].on_select(items[selected]);
 				return true;

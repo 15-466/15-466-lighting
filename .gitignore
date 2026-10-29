@@ -10,7 +10,7 @@ dist/README-freetype.txt
 dist/README-harfbuzz.txt
 dist/demo.ilk
 dist/demo.pdb
-dist/SDL2.dll
+dist/SDL3.dll
 dist/demo
 dist/demo.exe
 sprites/pack-sprites*

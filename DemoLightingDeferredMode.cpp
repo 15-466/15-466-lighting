@@ -140,16 +140,16 @@ DemoLightingDeferredMode::~DemoLightingDeferredMode() {
 }
 
 bool DemoLightingDeferredMode::handle_event(SDL_Event const &evt, glm::uvec2 const &window_size) {
-	if (evt.type == SDL_KEYDOWN && evt.key.keysym.sym == SDLK_1) {
+	if (evt.type == SDL_EVENT_KEY_DOWN && evt.key.key == SDLK_1) {
 		show = ShowOutput;
 	}
-	if (evt.type == SDL_KEYDOWN && evt.key.keysym.sym == SDLK_2) {
+	if (evt.type == SDL_EVENT_KEY_DOWN && evt.key.key == SDLK_2) {
 		show = ShowPosition;
 	}
-	if (evt.type == SDL_KEYDOWN && evt.key.keysym.sym == SDLK_3) {
+	if (evt.type == SDL_EVENT_KEY_DOWN && evt.key.key == SDLK_3) {
 		show = ShowNormalRoughness;
 	}
-	if (evt.type == SDL_KEYDOWN && evt.key.keysym.sym == SDLK_4) {
+	if (evt.type == SDL_EVENT_KEY_DOWN && evt.key.key == SDLK_4) {
 		show = ShowAlbedo;
 	}
 	return DemoLightingMultipassMode::handle_event(evt, window_size);
